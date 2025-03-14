@@ -14,7 +14,7 @@ def bubble_sort(arr):
     for i in range(len(arr)):
         sorted = True
         for j in range(len(arr)-i-1):
-            if arr[j] < arr[j+1]:
+            if arr[j] > arr[j+1]:
                 arr[j], arr[j+1] = arr[j+1], arr[j]
                 sorted = False
         if sorted:
@@ -58,12 +58,25 @@ def merge_sort_recursive(arr, start, end):
         merge_sort_recursive(arr, (start+end)//2+1, end)
         merge(arr, start, (start+end)//2, end)
 
+def merge_insert_hybrid_recursive(arr, start, end, t):
+    if start < end:
+        if end - start < t:
+            insertion_sort(arr[start:end+1])
+        else:
+            merge_insert_hybrid_recursive(arr, start, (start+end)//2, t)
+            merge_insert_hybrid_recursive(arr, (start+end)//2+1, end, t)
+            merge(arr, start, (start+end)//2, end)
+
 
 def merge_sort(arr):
     merge_sort_recursive(arr, 0, len(arr)-1)
 
+def merge_insert_hybrid_sort(arr, t):
+    merge_insert_hybrid_recursive(arr, 0, len(arr)-1, t)
+
 # arr = generate(1000000)
 # begin = time.time()
+# # merge_insert_hybrid_sort(arr,6)
 # merge_sort(arr)
 # end = time.time()
 # print(arr)
