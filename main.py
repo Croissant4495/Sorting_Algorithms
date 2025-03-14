@@ -11,12 +11,12 @@ def generate(n):
         arr.append(random.randint(0,9999))
     return arr
 
-list_sizes = [1000, 5000, 10000]
+list_sizes = [1000, 2000, 5000, 7000, 10000, 20000, 50000, 100000]
+function_handle = [insertion_sort, bubble_sort, selection_sort, merge_sort]
 #                                   cols                 rows: algo
-time_arr = [[0 for i in range(len(list_sizes))] for j in range(3)]  
+time_arr = [[0 for i in range(len(list_sizes))] for j in range(len(function_handle))]  
 # time_arr = [3][len(list_sizes)] 
     
-function_handle = [insertion_sort, bubble_sort, selection_sort]
 
 for j in range(len(list_sizes)):
     arr = generate(list_sizes[j])
@@ -30,9 +30,9 @@ for j in range(len(list_sizes)):
 for i in time_arr:
     print(i)
 
-algorithms = ['Insertion Sort', 'Bubble Sort', 'Selection Sort']
+algorithms = ['Insertion Sort', 'Bubble Sort', 'Selection Sort', 'merge_sort']
 
-colors = ['red', 'blue', 'green']
+colors = ['red', 'blue', 'green', 'purple']
 
 # Plot each algorithm separately
 plt.figure(figsize=(8, 6))
