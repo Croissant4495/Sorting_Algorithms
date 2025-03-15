@@ -82,6 +82,8 @@ def swap(arr, i , j):
     arr[i], arr[j] = arr[j], arr[i]
 
 def partition(arr, i, j):
+    pivot = random.randint(i, j -1)
+    swap(arr, i, pivot)
     pivot = i
     while i < j:
         i +=1
