@@ -1,5 +1,5 @@
 from num_gen import *
-import time
+
 def insertion_sort(array):
     for i in range(1, len(array)):
         temp = array[i]
@@ -74,10 +74,31 @@ def merge_sort(arr):
 def merge_insert_hybrid_sort(arr, t):
     merge_insert_hybrid_recursive(arr, 0, len(arr)-1, t)
 
-# arr = generate(1000000)
-# begin = time.time()
-# # merge_insert_hybrid_sort(arr,6)
-# merge_sort(arr)
-# end = time.time()
-# print(arr)
-# print(1000*(end-begin))
+def swap(arr, i , j):
+    arr[i], arr[j] = arr[j], arr[i]
+
+def partition(arr, i, j):
+    pivot = i
+    while i < j:
+        i +=1
+        if i< len(arr) -1:
+            while arr[i] < arr[pivot]:
+                i +=1
+        
+        j -=1
+        while arr[j] > arr[pivot]:
+            j -=1
+
+        if i<j:
+            swap(arr, i, j)
+    swap(arr, pivot, j)
+    return j
+
+def quick_sort_rec(arr, i, j):
+    if i < j:
+        pivot = partition(arr, i, j)
+        quick_sort_rec(arr, i, pivot)
+        quick_sort_rec(arr, pivot+1, j)
+
+def quick_sort(arr):
+    quick_sort_rec(arr, 0, len(arr))
