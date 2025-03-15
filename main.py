@@ -1,22 +1,14 @@
-import random
 import time
 from sorting import *
 from num_gen import generate
 import matplotlib.pyplot as plt
 from matplotlib.table import Table
 
-def generate(n):
-    arr = []
-    for i in range(n):
-        arr.append(random.randint(0,9999))
-    return arr
 
 list_sizes = [1000, 2000, 5000, 7000, 10000, 20000, 50000, 100000]
-function_handle = [insertion_sort, bubble_sort, selection_sort, merge_sort, quick_sort]
+function_handle = [insertion_sort, bubble_sort, selection_sort, merge_sort, quick_sort, heap_sort]
 #                                   cols                 rows: algo
-time_arr = [[0 for i in range(len(list_sizes))] for j in range(len(function_handle))]  
-# time_arr = [3][len(list_sizes)] 
-    
+time_arr = [[0 for i in range(len(list_sizes))] for j in range(len(function_handle))]      
 
 for j in range(len(list_sizes)):
     arr = generate(list_sizes[j])
@@ -27,13 +19,13 @@ for j in range(len(list_sizes)):
         time_arr[i][j] = 1000*(end-begin)
 
 
-for i in time_arr:
-    print(i)
+algorithms = ['Insertion Sort', 'Bubble Sort', 'Selection Sort', 'Merge Sort', 'Quick Sort', 'Heap Sort']
+for i in range(len(algorithms)):
+    print(f"{algorithms[i]}: {time_arr[i]}")
 
-algorithms = ['Insertion Sort', 'Bubble Sort', 'Selection Sort', 'merge_sort', 'quick_sort']
 
-colors = ['red', 'blue', 'green', 'purple', 'orange']
-
+# __________PLOTTING__________
+colors = ['red', 'blue', 'green', 'purple', 'orange', 'black']
 # Plot each algorithm separately
 plt.figure(figsize=(8, 6))
 for i, algo in enumerate(algorithms):

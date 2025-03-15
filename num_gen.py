@@ -1,5 +1,4 @@
 import random
-import time
 def generate(n):
     arr = []
     for i in range(n):
